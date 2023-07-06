@@ -15,6 +15,12 @@ def cargarInicio(request):
 def cargarProductos(request):
     return render(request, "pProductos.html")
 
+
+def cargarCrearUsuario(request):
+    return render(request, "crearUsuario.html")
+
+
+
 def exit(request):
     logout(request)
     return redirect('home')
