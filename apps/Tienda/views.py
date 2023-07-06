@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 
 import os
-from .models import Categoria, Producto
+from .models import Categoria, Producto, Usuario
 
 from django.conf import settings
 # Create your views here.
@@ -15,9 +15,24 @@ def cargarInicio(request):
 def cargarProductos(request):
     return render(request, "pProductos.html")
 
-
+# Crear usuario def
 def cargarCrearUsuario(request):
-    return render(request, "crearUsuario.html")
+    usuario = Usuario.objects.all()
+    
+    return render(request, "crearUsuario.html", {"usuario":usuario})
+
+#ARREGLA ESTO AWEONAO
+def crearUsuario(request):
+    
+    v_correo = request.POST['emailNuevo']
+    v_nombreUsuario = request.POST['usernameNuevo']
+    v_contrasena = request.POST['passwordNuevo']
+    
+    Producto.objects.create(correo = v_correo, nombreUsuario = v_nombreUsuario, passUsuario = v_contrasena)
+    
+    return redirect('home')
+
+# Crear usuario def FIN
 
 
 
@@ -25,9 +40,11 @@ def exit(request):
     logout(request)
     return redirect('home')
 
+# Agregar productos como administrador
 def cargarAgregarProductos(request):
-    return render (request, "agregarProductoBDD.html")
-
+    categorias = Categoria.objects.all()
+    productos = Producto.objects.all()
+    return render(request,"agregarProductoBDD.html",{"cate":categorias,"prod":productos})
 def agregarProducto(request):
     
 
@@ -42,7 +59,7 @@ def agregarProducto(request):
 
     Producto.objects.create(sku = v_sku, nombre = v_nombre, precio = v_precio,stock = v_stock, descripcion = v_descripcion, imagenUrl=v_imagen,categoriaId = v_categoria)
     
-    return redirect('/agregarProducto')
+    return redirect('/agregarProductoBDD.html')
 
 
 def cargarEditarProducto(request,sku):
@@ -78,7 +95,7 @@ def editarProducto(request):
     
     productBDD.save()
 
-    return redirect('/agregarProducto')
+    return redirect('/agregarProductoBDD.html')
 
 
 
@@ -87,4 +104,6 @@ def eliminarProducto(cod_producto):
     ruta_imagen = os.path.join(settings.MEDIA_ROOT, str(producto.imagenUrl))
     os.remove(ruta_imagen)
     producto.delete()
-    return redirect('/agregarProducto')
+    return redirect('/agregarProductoBDD.html')
+
+# Agregar productos como administrador FIN
