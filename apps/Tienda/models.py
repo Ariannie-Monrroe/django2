@@ -27,3 +27,14 @@ class Producto(models.Model):
         txt = "Producto N° {0} - Stock {1} - Precio {2} - fecha {3}"
         return txt.format(self.sku,self.stock,self.precio,self.fecha)
     
+
+class Usuario(models.Model):
+    
+    correo = models.CharField(primary_key=True,max_length=500)
+    nombreUsuario = models.CharField(max_length=50)
+    passUsuario = models.CharField(max_length=50)
+    
+    
+
+    
+    
