@@ -32,11 +32,15 @@
                     <a href="{% url 'prod' %}">Productos</a>
                 </div>
 
-                <div class="item" id="itemThree">
-                    <a href="#">PlantCare</a>
-                </div>
-
                 
+
+                {% if request.user.is_authenticated %}
+
+                    <div class="item" id="itemThree">
+                        <a href="{% url 'cargar_P_BDD' %}">Agregar_Producto</a>
+                    </div>
+                    
+                {% endif %}
 
                 {% if request.user.is_authenticated %}
 
@@ -48,6 +52,7 @@
                         <a href="{% url 'login' %}">Log_In</a>
                     </div>
                 {% endif %}
+
                 <div class="itemShop">
                     <a href="#"><i class="fa-solid fa-cart-shopping"></i></a>
                 </div>
