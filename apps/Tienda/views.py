@@ -17,9 +17,9 @@ def cargarProductos(request):
 
 # Crear usuario def
 def cargarCrearUsuario(request):
-    usuario = Usuario.objects.all()
+    crearUsuario
     
-    return render(request, "crearUsuario.html", {"usuario":usuario})
+    return render(request, "crearUsuario.html")
 
 #ARREGLA ESTO AWEONAO
 def crearUsuario(request):
@@ -28,7 +28,7 @@ def crearUsuario(request):
     v_nombreUsuario = request.POST['usernameNuevo']
     v_contrasena = request.POST['passwordNuevo']
     
-    Producto.objects.create(correo = v_correo, nombreUsuario = v_nombreUsuario, passUsuario = v_contrasena)
+    Usuario.objects.create(correo = v_correo, nombreUsuario = v_nombreUsuario, passUsuario = v_contrasena)
     
     return redirect('home')
 
@@ -45,6 +45,7 @@ def cargarAgregarProductos(request):
     categorias = Categoria.objects.all()
     productos = Producto.objects.all()
     return render(request,"agregarProductoBDD.html",{"cate":categorias,"prod":productos})
+
 def agregarProducto(request):
     
 

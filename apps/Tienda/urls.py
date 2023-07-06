@@ -8,6 +8,7 @@ urlpatterns = [
     path('logout/', exit , name='exit'),
     path('agregarProductoBDD.html/', cargarAgregarProductos , name='cargar_P_BDD'),
     path('crearUsuario.html/', cargarCrearUsuario , name='crearUsuario'),
+    
     path('agregarProductoF',agregarProducto),
-    path('ValidarUsuario',cargarCrearUsuario),
+    path('ValidarUsuario',crearUsuario),
 ]
