@@ -26,136 +26,16 @@
     </div>
     <!--Fin Carousel -->
 
-    <!-- Cards -->
 
-    <div class="container mt-5">
-        <h1 class="text-center font-weigth-normal">Products</h1>
-    </div>
+    {% if request.user.is_authenticated %}
 
-    <div class="container mt-4 d-flex mb-5">
-        <div class="row">
-
-            <div class="col-md-4 mt-5">
-                <div class="card">
-                    <img src="img/card6.jpg" class="card-img-top w-100" alt="">
-                    <div class="card-body">
-                        <h2 class="card-title">Aspidistra</h2>
-                        <div class="d-flex justify-content-between">
-                            <p class="card-text">Aspidistra en macetero</p>
-                            <P class="card-text mr-4 text-success">$32.000</P>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-4 mt-5">
-                <div class="card">
-                    <img src="img/card5.jpg" class="card-img-top w-100" alt="">
-                    <div class="card-body">
-                        <h2 class="card-title">Ficus Bonsai</h2>
-                        <div class="d-flex justify-content-between">
-                            <p class="card-text">Ficus bonsai en macetero</p>
-                            <P class="card-text mr-4 text-success">$30.000</P>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-4 mt-5">
-                <div class="card">
-                    <img src="img/card4.jpg" class="card-img-top w-100" alt="">
-                    <div class="card-body">
-                        <h2 class="card-title">Peperomia</h2>
-                        <div class="d-flex justify-content-between">
-                            <p class="card-text">Peperomia polybrotrya</p>
-                            <P class="card-text mr-4 text-success">$32.000</P>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-4 mt-5">
-                <div class="card">
-                    <img src="img/macetero1.jpg" class="card-img-top w-100" alt="">
-                    <div class="card-body">
-                        <h2 class="card-title">Macetero Cerámica</h2>
-                        <div class="d-flex justify-content-between">
-                            <p class="card-text">Medida: 15,5 diámetro x 15 alto</p>
-                            <P class="card-text mr-4 text-success">$4.990</P>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-4 mt-5">
-                <div class="card">
-                    <img src="img/macetero2.jpg" class="card-img-top w-100" alt="">
-                    <div class="card-body">
-                        <h2 class="card-title">Macetero Sp27</h2>
-                        <div class="d-flex justify-content-between">
-                            <p class="card-text">Medidas: 20 alto x 16 diámetro</p>
-                            <P class="card-text mr-4 text-success">$39.865</P>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-4 mt-5">
-                <div class="card">
-                    <img src="img/macetero3.jpg" class="card-img-top w-100" alt="">
-                    <div class="card-body">
-                        <h2 class="card-title">Macetero Gris </h2>
-                        <div class="d-flex justify-content-between">
-                            <p class="card-text">Medida: 17 alto x 16.5 diámetro</p>
-                            <P class="card-text mr-4 text-success">$15.990</P>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-4 mt-5">
-                <div class="card">
-                    <img src="img/sustrato1.jpg" class="card-img-top w-100" alt="">
-                    <div class="card-body">
-                        <h2 class="card-title">FertPlant</h2>
-                        <div class="d-flex justify-content-between">
-                            <p class="card-text">Fertilizante - 1 Litro</p>
-                            <P class="card-text mr-4 text-success">$3.590</P>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-4 mt-5">
-                <div class="card">
-                    <img src="img/sustrato2.jpg" class="card-img-top w-100" alt="">
-                    <div class="card-body">
-                        <h2 class="card-title">Fibra de Coco</h2>
-                        <div class="d-flex justify-content-between">
-                            <p class="card-text">Saco de 3 Litros</p>
-                            <P class="card-text mr-4 text-success">$4.990</P>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-4 mt-5">
-                <div class="card">
-                    <img src="img/sustrato3.jpg" class="card-img-top w-100" alt="">
-                    <div class="card-body">
-                        <h2 class="card-title">Tierra Para Enraizar</h2>
-                        <div class="d-flex justify-content-between">
-                            <p class="card-text">Ideal para enraizar esquejes</p>
-                            <P class="card-text mr-4 text-success">$1.500</P>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
+        <div class="item" id="itemOne">
+            {{ user.username | upper  }} , Bienvenido y chupalo
         </div>
-    </div>
 
-    </div>
+    {% endif %}
+                
 
-    <!-- Fin Cards -->
+    
+
 {% endblock %}

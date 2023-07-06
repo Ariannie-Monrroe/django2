@@ -1,7 +1,10 @@
 
 from django.urls import path 
-from . import views
+from .views import cargarInicio, cargarProductos , exit
 
 urlpatterns = [
-    path('', views.cargarInicio)
+    path('', cargarInicio, name= 'home'),
+    path('pProductos.html/', cargarProductos , name='prod'),
+    path('logout/', exit , name='exit'),
+
 ]

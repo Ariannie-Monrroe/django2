@@ -22,22 +22,32 @@
 
             <div class="navb-items d-none d-xl-flex">
 
+                
+
                 <div class="item" id="itemOne">
-                    <a href="#">Plantas</a>
+                    <a href="{% url 'home' %}">Home</a>
                 </div>
 
                 <div class="item" id="itemTwo">
-                    <a href="#">Maceteros</a>
+                    <a href="{% url 'prod' %}">Productos</a>
                 </div>
 
                 <div class="item" id="itemThree">
                     <a href="#">PlantCare</a>
                 </div>
 
-                <div class="item" id="itemFour">
-                    <a href="logIn.html">Log_In</a>
-                </div>
+                
 
+                {% if request.user.is_authenticated %}
+
+                    <div class="item" id="itemFour">
+                        <a href="{% url 'exit' %}">Log_out</a>
+                    </div>
+                {% else %}  
+                    <div class="item" id="itemFour">
+                        <a href="{% url 'login' %}">Log_In</a>
+                    </div>
+                {% endif %}
                 <div class="itemShop">
                     <a href="#"><i class="fa-solid fa-cart-shopping"></i></a>
                 </div>
