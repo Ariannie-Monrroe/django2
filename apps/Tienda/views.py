@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
+from django.contrib import messages
+from time import sleep
 
 import os
 from .models import Categoria, Producto, Usuario
@@ -24,12 +26,16 @@ def cargarCrearUsuario(request):
 #ARREGLA ESTO AWEONAO
 def crearUsuario(request):
     
+    
+    
     v_correo = request.POST['emailNuevo']
     v_nombreUsuario = request.POST['usernameNuevo']
     v_contrasena = request.POST['passwordNuevo']
     
     Usuario.objects.create(correo = v_correo, nombreUsuario = v_nombreUsuario, passUsuario = v_contrasena)
     
+    messages.success(request, f'Usuario {v_nombreUsuario} creado correctamente')
+    sleep(2)
     return redirect('home')
 
 # Crear usuario def FIN
@@ -41,6 +47,7 @@ def exit(request):
     return redirect('home')
 
 # Agregar productos como administrador
+@login_required
 def cargarAgregarProductos(request):
     categorias = Categoria.objects.all()
     productos = Producto.objects.all()

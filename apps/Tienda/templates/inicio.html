@@ -43,7 +43,13 @@
 
     {% endif %}
                 
-
+    {% if messages %}
+        {% for message in messages %}
+            <div class="notification  {{ message.tag }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
     
 
 {% endblock %}
