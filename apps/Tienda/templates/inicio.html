@@ -29,9 +29,17 @@
 
     {% if request.user.is_authenticated %}
 
-        <div class="item" id="itemOne">
-            {{ user.username | upper  }} , Bienvenido y chupalo
+    <div class="container d-flex justify-content-end mt-3" style="height: 40px;">
+        <div class="row">
+            <div class="item" id="itemOne">
+                <i class="fa-regular fa-user m-2" style="color: #ffffff;"></i>
+                {{ user.username | upper  }}, Bienvenido
+            </div>
         </div>
+    </div>
+        <!-- <div class="item" id="itemOne">
+            {{ user.username | upper  }}, Bienvenido
+        </div> -->
 
     {% endif %}
                 
