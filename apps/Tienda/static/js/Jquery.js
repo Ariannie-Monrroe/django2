@@ -92,7 +92,7 @@
 //     }
 
 // };
-//dddddd
+//dddddd341342134242134123
 // API 
 function clima(latitud, longitud) {
     fetch("https://api.openweathermap.org/data/2.5/weather?lat="+ latitud + "&lon=" + longitud+ "&appid=da782411f0dd3e140c85a1c83494aa97")
