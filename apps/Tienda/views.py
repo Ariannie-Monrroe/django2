@@ -71,11 +71,12 @@ def agregarProducto(request):
 
 
 def cargarEditarProducto(request,sku):
-    prod = Producto.objects.get(sku = sku)
+    prod = Producto.objects.all()
+    productoUnico = Producto.objects.get(sku = sku)
     categoria = Categoria.objects.all()
-    return render(request,"editarProducto.html",{"prod":prod, "cate":categoria})
+    return render(request,"agregarProductoBDD.html",{"prod":prod, "cate":categoria , "productoUnic": productoUnico})
 
-
+#MODIFICAR
 def editarProducto(request):
     v_categoria = Categoria.objects.get(id_categoria = request.POST['cmbCategoria'])
 
@@ -103,15 +104,15 @@ def editarProducto(request):
     
     productBDD.save()
 
-    return redirect('/agregarProductoBDD.html')
+    return redirect('/agregarProducto')
 
 
+#LISTO FALTA EL PARTADO DE MEDIA_RUT IMAGEN
 
-def eliminarProducto(cod_producto):
-    producto = Producto.objects.get(sku = cod_producto)
-    ruta_imagen = os.path.join(settings.MEDIA_ROOT, str(producto.imagenUrl))
-    os.remove(ruta_imagen)
-    producto.delete()
-    return redirect('/agregarProductoBDD.html')
+def eliminarProducto(request,codigo):
+    
+    productoEliminar = Producto.objects.get(sku=codigo)
+    productoEliminar.delete()
+    return redirect('agregarProductoBDD.html')
 
 # Agregar productos como administrador FIN

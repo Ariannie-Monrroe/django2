@@ -1,6 +1,6 @@
 
 from django.urls import path 
-from .views import cargarInicio, cargarProductos , exit, cargarAgregarProductos, cargarCrearUsuario, agregarProducto, crearUsuario
+from .views import cargarInicio, cargarProductos , exit, cargarAgregarProductos, cargarCrearUsuario, agregarProducto, crearUsuario,cargarEditarProducto,editarProducto,eliminarProducto
 
 urlpatterns = [
     path('', cargarInicio, name= 'home'),
@@ -11,4 +11,8 @@ urlpatterns = [
     
     path('agregarProductoF',agregarProducto),
     path('ValidarUsuario',crearUsuario),
+    
+    path('eliminarProducto/<codigo>',eliminarProducto)
+    
+
 ]
