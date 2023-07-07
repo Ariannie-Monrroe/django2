@@ -20,7 +20,7 @@ class Producto(models.Model):
     stock = models.IntegerField()
     fecha = models.DateField(auto_now_add=True)
     descripcion = models.CharField(max_length=120)
-    imagenUrl = models.ImageField(upload_to="imgProducto")
+    imagenUrl = models.ImageField(upload_to="imgProducto", null=True)
     categoriaId = models.ForeignKey(Categoria, on_delete=models.CASCADE)
 
     def __str__(self):
