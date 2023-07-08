@@ -21,7 +21,7 @@
                 </div>
             </div>
             <div class="col">
-                <div class="input_container">
+                <div class="input_container" id="form1">
                     <form name="formValidation" id="formValidation" action="" method="post">
                         {% csrf_token %}
                         <div class="input-row mb-3">
@@ -40,13 +40,24 @@
                         
                         
                         <button type="submit" class="btnLogIn btn btn-success ">Continuar</button>
+
+                        <!-- CORREGIR ALERT (BUSCAR UN NUEVO LUGAR) -->
+                        <!-- <div id="alertSI" class="alert alert-success alert-dismissible fade show" role="alert">
+                            El producto se agrego correctamente
+                        </div> -->
+            
+                        <div id="alertNO" class="alert alert-danger" role="alert">
+                            Completa todos los campos!!
+                        </div>
                     </form>
+                    
                     <!-- <div class="singIn mt-2">
                         <a href="#">Sing Up</a>
                     </div> -->
                 </div>
             </div>
         </div>
+
         <div class="row">
             <div class="col">
                 <div class="name2">
@@ -75,6 +86,29 @@
     <script src="{% static 'js/Jquery.js' %}"></script>
     <script src="{% static 'js/reloj.js' %}"></script>
     <script src="{% static 'js/darkMode.js'  %}"></script>
-    
+
+
+    <!-- solo es una prueba -->
+    <script>
+        $(document).ready(function(){
+            // $("#alertSI").hide();
+            $("#alertNO").hide();
+            $("#form1").submit(function(e){
+                e.preventDefault();
+                exampleInputEmail1= $.trim($("#exampleInputEmail1").val());
+                exampleInputPassword1= $.trim($("#exampleInputPassword1").val());
+                if (exampleInputEmail1.length>0 &&  exampleInputPassword1.length>0) {
+                    $("#alertSI").fadeTo(2000, 500).slideUp(500, function() {
+                        $("#alertSI").slideUp(500);
+                    });
+                } else{
+                    $("#alertNO").fadeTo(2000, 500).slideUp(500, function() {
+                        $("#alertNO").slideUp(500);
+                    });
+                }
+            });
+        });
+        </script>
+
 </body>
 </html>
