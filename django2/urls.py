@@ -18,11 +18,13 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from post.api.router import router_posts
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include("apps.Tienda.urls")),
     path('accounts/', include('django.contrib.auth.urls')),
+    path('api/', include(router_posts.urls))
 ]
 
 if settings.DEBUG:
