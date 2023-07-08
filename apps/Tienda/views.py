@@ -5,28 +5,45 @@ from django.contrib import messages
 from time import sleep
 
 import os
+
 from .models import Categoria, Producto, Usuario
 
 from django.conf import settings
-# Create your views here.
+# DEF Cargar TEMPLATES (INICIO)
+
+@login_required
+def cargarAgregarProductos(request):
+    categorias = Categoria.objects.all()
+    productos = Producto.objects.all()
+    return render(request,"agregarProductoBDD.html",{"cate":categorias,"prod":productos})
+
+
+def cargarEditarProducto(request,sku):
+    productoEdit = Producto.objects.get(sku = sku)
+    categoria = Categoria.objects.all()
+    return render(request,"editProducto.html",{"prod":productoEdit, "cate":categoria })
 
 def cargarInicio(request):
+    
     return render(request, "inicio.html")
+
 
 @login_required
 def cargarProductos(request):
-    return render(request, "pProductos.html")
+    categorias = Categoria.objects.all()
+    productos = Producto.objects.all()
+    return render(request, "pProductos.html",{"prod":productos, "cate":categorias })
 
-# Crear usuario def
+
+
 def cargarCrearUsuario(request):
     crearUsuario
     
     return render(request, "crearUsuario.html")
+# Cargar TEMPLATES (FIN)
 
-#ARREGLA ESTO AWEONAO
+# Crear usuario 
 def crearUsuario(request):
-    
-    
     
     v_correo = request.POST['emailNuevo']
     v_nombreUsuario = request.POST['usernameNuevo']
@@ -38,26 +55,17 @@ def crearUsuario(request):
     sleep(2)
     return redirect('home')
 
-# Crear usuario def FIN
-
-
 
 def exit(request):
     logout(request)
     return redirect('home')
 
-# Agregar productos como administrador
-@login_required
-def cargarAgregarProductos(request):
-    categorias = Categoria.objects.all()
-    productos = Producto.objects.all()
-    return render(request,"agregarProductoBDD.html",{"cate":categorias,"prod":productos})
+
+# Editar, Eliminar, Agregar Producto como ADMINISTRADOR (INICIO)
 
 def agregarProducto(request):
     
-
     v_categoria = Categoria.objects.get(id_categoria = request.POST['cmbCategoria'])
-
     v_sku = request.POST['txtSku']
     v_nombre = request.POST['txtnombre']
     v_precio = request.POST['txtprecio']
@@ -70,49 +78,42 @@ def agregarProducto(request):
     return redirect('/agregarProductoBDD.html')
 
 
-def cargarEditarProducto(request,sku):
-    prod = Producto.objects.all()
-    productoUnico = Producto.objects.get(sku = sku)
-    categoria = Categoria.objects.all()
-    return render(request,"agregarProductoBDD.html",{"prod":prod, "cate":categoria , "productoUnic": productoUnico})
-
-#MODIFICAR
 def editarProducto(request):
     v_categoria = Categoria.objects.get(id_categoria = request.POST['cmbCategoria'])
-
     v_sku = request.POST['txtSku']
-    productBDD = Producto.objects.get(sku = v_sku)
+    productEditar = Producto.objects.get(sku = v_sku)
     v_nombre = request.POST['txtnombre']
     v_precio = request.POST['txtprecio']
     v_stock = request.POST['txtStock']
     v_descripcion = request.POST['txtDescripcion']
 
-
     try:
         v_imagen = request.FILES['txtImagen']
-        ruta_imagen = os.path.join(settings.MEDIA_ROOT, str(productBDD.imagenUrl))
+        ruta_imagen = os.path.join(settings.MEDIA_ROOT, str(productEditar.imagenUrl))
         os.remove(ruta_imagen)
     except:
-        v_imagen = productBDD.imagenUrl
+        v_imagen = productEditar.imagenUrl
 
-    productBDD.nombre = v_nombre
-    productBDD.precio = v_precio
-    productBDD.stock = v_stock
-    productBDD.descripcion = v_descripcion
-    productBDD.categoriaId = v_categoria
-    productBDD.imagenUrl = v_imagen
+    productEditar.nombre = v_nombre
+    productEditar.precio = v_precio
+    productEditar.stock = v_stock
+    productEditar.descripcion = v_descripcion
+    productEditar.categoriaId = v_categoria
+    productEditar.imagenUrl = v_imagen
     
-    productBDD.save()
+    productEditar.save()
 
-    return redirect('/agregarProducto')
+    return redirect('/agregarProductoBDD.html')
 
 
-#LISTO FALTA EL PARTADO DE MEDIA_RUT IMAGEN
 
 def eliminarProducto(request,codigo):
     
     productoEliminar = Producto.objects.get(sku=codigo)
+    eliminarImagen = os.path.join(settings.MEDIA_ROOT, str(productoEliminar.imagenUrl))
+    os.remove(eliminarImagen)
     productoEliminar.delete()
-    return redirect('agregarProductoBDD.html')
+    
+    return redirect('/agregarProductoBDD.html')
 
-# Agregar productos como administrador FIN
+# Agregar, Eliminar y Editar productos como ADMINISTRADOR (FIN)

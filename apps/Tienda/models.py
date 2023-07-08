@@ -1,5 +1,5 @@
 from django.db import models
-
+import os
 # Create your models here.
 
 
@@ -20,12 +20,15 @@ class Producto(models.Model):
     stock = models.IntegerField()
     fecha = models.DateField(auto_now_add=True)
     descripcion = models.CharField(max_length=120)
-    imagenUrl = models.ImageField(upload_to="imgProducto", null=True)
+    imagenUrl = models.ImageField(upload_to="imgProducto")
     categoriaId = models.ForeignKey(Categoria, on_delete=models.CASCADE)
 
     def __str__(self):
         txt = "Producto N° {0} - Stock {1} - Precio {2} - fecha {3}"
         return txt.format(self.sku,self.stock,self.precio,self.fecha)
+    
+    
+        
     
 
 class Usuario(models.Model):

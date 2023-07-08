@@ -1,5 +1,30 @@
 {% extends './base.html' %}
 {% load static %}
 {% block body %}
-<h2>PRODUCTOS</h2>
+<div class="container mt-5">
+    <h1 class="text-center font-weigth-normal">Products</h1>
+</div>
+
+    <div class="container mt-4 d-flex mb-5">
+        <div class="row">
+            {% for p in prod %}
+                <div class="col-md-4 mt-5">
+                    <div class="card">
+                        <img src="{{p.imagenUrl.url}}" class="card-img-top w-100" alt="">
+                        <div class="card-body">
+                            <h2 class="card-title">{{p.nombre}}</h2>
+                            <div class="d-flex justify-content-between">
+                                <p class="card-text">{{p.descripcion}}</p>
+                                <P class="card-text mr-4 text-success">{{p.precio}}</P>     
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+
+
+
 {% endblock %}

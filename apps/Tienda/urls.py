@@ -12,7 +12,12 @@ urlpatterns = [
     path('agregarProductoF',agregarProducto),
     path('ValidarUsuario',crearUsuario),
     
-    path('eliminarProducto/<codigo>',eliminarProducto)
+    
+    path('editarProducto/<sku>',cargarEditarProducto),
+    
+    path('editarProducto',editarProducto),
+    
+    path('eliminarProducto/<codigo>',eliminarProducto, name= 'eliminarProducto')
     
 
 ]
