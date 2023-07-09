@@ -16,26 +16,26 @@
         <div class="row">
             {% for p in prod %}
                 <div class="col-md-4 mt-5">
-                    <div class="card item">
-                        <div class="card item">
-                            <img src="{{p.imagenUrl.url}}" alt="" class="img-item card-img-top w-100 ">
-                                <h2 class="titulo-item">
-                                    {{p.nombre}}
-                                </h2>
+                    <div class="card item">                       
+                        <img src="{{p.imagenUrl.url}}" alt="" class="img-item card-img-top w-100 ">
+                            <div class="card-body">
+                                <h2 class="titulo-item">{{p.nombre}}</h2>
                                 <div class="d-flex justify-content-between">
                                     <p class="card-text">{{p.descripcion}}</p>
-                                    <P class="precio-item mr-4 text-success">${{p.precio}}</P>     
+                                    <P class="precio-item mr-4 text-success">${{p.precio}}</p>  
                                 </div>
-                        </div>
-                            <button class="boton-item btn btn-success">
-                                Agregar al Carrito
+                                
+                            </div>
+                            <button class="boton-item btn" id="botonColor">
+                                agregar
                             </button>
+                            
                     </div>
                 </div>   
             {% endfor %}
         </div>
     </section>
-
+<div class="container">
     <div class="carrito" id="carrito">
         <div class="header-carrito">
             <h2>Tu Carrito</h2>
@@ -54,11 +54,7 @@
             <button class="btn-pagar">Pagar <i class="fa-solid fa-bag-shopping"></i> </button>
         </div>
     </div>
-
-
-
-
-
-
+</div>
+    
     <script src="{% static 'js/carritoDcompras.js'  %}" async></script>
 {% endblock %}

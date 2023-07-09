@@ -1,4 +1,10 @@
-
+#botonColor{
+    background-color: #087231;
+}
+#agregarText{
+    color: #ffffff;
+    
+}
 .carrito{
     border: 1px solid #666;
     width: 35%;
@@ -14,7 +20,7 @@
     opacity: 0;
 }
 .carrito .header-carrito{
-    background-color: #000;
+    background-color: #087231;
     color: #fff;
     text-align: center;
     padding: 30px 0;
@@ -102,7 +108,7 @@
     display: block;
     width: 100%;
     border: none;
-    background: #000;
+    background: #087231;
     color: #fff;
     border-radius: 5px;
     font-size: 18px;
@@ -117,6 +123,6 @@
     scale: 1.05;
 }
 
-
+/* SECCION RESPONSIVE */
 
 
