@@ -1,5 +1,6 @@
 #botonColor{
     background-color: #087231;
+    /* height: 20px; */
 }
 #agregarText{
     color: #ffffff;
@@ -125,4 +126,13 @@
 
 /* SECCION RESPONSIVE */
 
+/* PRODUCTOS */
+.pproductsC{
+    color: #000000;
+}
 
+/* botones agregar */
+
+.btnP{
+    height:0px;
+}
