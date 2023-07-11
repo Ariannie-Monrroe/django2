@@ -31,10 +31,13 @@
                             </button>
                             
                     </div>
+                    <a href="{% url 'eliminar_stock' producto_id=p.sku %}" class="btn-eliminar">Comprar</a>
                 </div>   
             {% endfor %}
         </div>
     </section>
+</div>
+
 <div class="container">
     <div class="carrito" id="carrito">
         <div class="header-carrito">
@@ -50,11 +53,67 @@
                 <span class="carrito-precio-total">
                     $120.000
                 </span>
+                
             </div>
-            <button class="btn-pagar">Pagar <i class="fa-solid fa-bag-shopping"></i> </button>
+            
+            <a  class="btn-eliminar">Comprar</a>
         </div>
     </div>
+    
 </div>
     
+
+<!-- Estoy probando un carrito nuevo -->
+<h1>Productos</h1>
+    <table>
+        <tr>
+            <th>SKU</th>
+            <th>Nombre</th>
+            <th>Precio</th>
+            <th>Stock</th>
+            <th>Agregar al Carrito</th>
+        </tr>
+        {% for p in prod %}
+        <tr>
+            <td>{{ p.sku }}</td>
+            <td>{{ p.nombre }}</td>
+            <td>{{ p.precio }}</td>
+            <td>{{ p.stock }}</td>
+            <td>
+                <form method="post" action="{% url 'agregar_carrito' %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="producto_id" value="{{ p.sku }}">
+                    <button type="submit">Agregar al Carrito</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <h1>Carrito de Compras</h1>
+{% if carrito %}
+    <table>
+    <tr>
+        <th>Producto</th>
+        <th>Precio</th>
+        <th>Cantidad</th>
+    </tr>
+    {% for p in carrito %}
+        <tr>
+        <td>{{ p.nombre }}</td>
+        <td>${{ p.precio }}</td>
+        <td>1</td>  <!-- Aquí puedes ajustar la cantidad según tu lógica de carrito -->
+        </tr>
+    {% endfor %}
+    </table>
+{% else %}
+    <p>No hay productos en el carrito</p>
+{% endif %}
+
+{% if mensaje %}
+    <div class="mensaje">{{ mensaje }}</div>
+{% endif %}
+
     <script src="{% static 'js/carritoDcompras.js'  %}" async></script>
+    
 {% endblock %}

@@ -3,6 +3,9 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 from django.contrib import messages
 from time import sleep
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+
 
 import os
 
@@ -116,4 +119,52 @@ def eliminarProducto(request,codigo):
     
     return redirect('/agregarProductoBDD.html')
 
+
+
+
+    if request.method == 'POST':
+        producto_id = request.POST.get('producto_id')
+        cantidad = int(request.POST.get('cantidad', 0))
+
+        try:
+            util_descontar_stock(producto_id, cantidad)
+            return JsonResponse({'success': True})
+        except ValueError as e:
+            return JsonResponse({'success': False, 'error': str(e)})
+
+    return JsonResponse({'success': False, 'error': 'Invalid request method'})
 # Agregar, Eliminar y Editar productos como ADMINISTRADOR (FIN)
+
+
+#DESCONTAR STOCK
+def eliminar_stock(request, producto_id):
+    try:
+        producto = Producto.objects.get(sku=producto_id)
+        if producto.stock > 0:
+            producto.stock -= 1
+            producto.save()
+            mensaje = "Compra realizada!!."
+        else:
+            mensaje = "No hay suficiente stock disponible."
+    except Producto.DoesNotExist:
+        mensaje = "Producto no encontrado."
+
+    return render(request, 'pProductos.html', {'mensaje': mensaje})
+
+
+def agregar_carrito(request):
+    if request.method == 'POST':
+        producto_id = request.POST.get('producto_id')
+        producto = Producto.objects.get(sku=producto_id)
+
+        carrito = request.session.get('carrito', [])
+        carrito.append(producto_id)
+        request.session['carrito'] = carrito
+
+    return redirect('pProductos.html')
+
+
+def mostrar_carrito(request):
+    carrito = request.session.get('carrito', [])
+    context = {'carrito': carrito}
+    return render(request, 'carrito.html', context)

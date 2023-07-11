@@ -40,9 +40,14 @@ function ready(){
     //Agregamos funcionalidad al botón comprar
     document.getElementsByClassName('btn-pagar')[0].addEventListener('click',pagarClicked)
 }
+
+
+
+
 //Eliminamos todos los elementos del carrito y lo ocultamos
 function pagarClicked(){
     alert("Gracias por la compra");
+
     //Elimino todos los elmentos del carrito
     var carritoItems = document.getElementsByClassName('carrito-items')[0];
     while (carritoItems.hasChildNodes()){
@@ -50,6 +55,8 @@ function pagarClicked(){
     }
     actualizarTotalCarrito();
     ocultarCarrito();
+    
+    
 }
 //Funciòn que controla el boton clickeado de agregar al carrito
 function agregarAlCarritoClicked(event){
@@ -194,4 +201,6 @@ function actualizarTotalCarrito(){
     document.getElementsByClassName('carrito-precio-total')[0].innerText = '$'+ total.toLocaleString("es");
 
 }
+
+
 
