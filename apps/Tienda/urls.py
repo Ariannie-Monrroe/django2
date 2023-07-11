@@ -1,6 +1,6 @@
 
 from django.urls import path 
-from .views import mostrar_carrito,agregar_carrito,cargarInicio,eliminar_stock, cargarProductos , exit, cargarAgregarProductos, cargarCrearUsuario, agregarProducto, crearUsuario,cargarEditarProducto,editarProducto,eliminarProducto
+from .views import agregar_carrito,cargarInicio,eliminar_stock, cargarProductos , exit, cargarAgregarProductos, cargarCrearUsuario, agregarProducto, crearUsuario,cargarEditarProducto,editarProducto,eliminarProducto
 
 urlpatterns = [
     path('', cargarInicio, name= 'home'),
@@ -24,7 +24,9 @@ urlpatterns = [
     path('pProductos.html/<int:producto_id>/', eliminar_stock, name='eliminar_stock'),
     
     
-    path('pProductos.html/', agregar_carrito, name='agregar_carrito'),
-    path('pProductos.html/', mostrar_carrito, name='mostrar_carrito'),
+    
+
+    
+    path('pProductos.html/<str:producto_id>/', agregar_carrito, name='agregar_carrito'),
 
 ]

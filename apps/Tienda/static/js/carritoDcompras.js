@@ -110,7 +110,7 @@ function agregarItemAlCarrito(titulo, precio, imagenSrc){
                 </div>
                 <span class="carrito-item-precio">${precio}</span>
             </div>
-            <button class="btn-eliminar">
+            <button class="btn-pagar">
                 <i class="fa-solid fa-trash"></i>
             </button>
         </div>
@@ -201,6 +201,8 @@ function actualizarTotalCarrito(){
     document.getElementsByClassName('carrito-precio-total')[0].innerText = '$'+ total.toLocaleString("es");
 
 }
+
+
 
 
 
