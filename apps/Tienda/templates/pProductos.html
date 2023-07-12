@@ -10,6 +10,7 @@
     <h1 class="text-center font-weigth-normal" style="color: black;">Productos</h1> 
 </div>
 
+
     
     <section class="container mt-4 d-flex mb-5">
         <div class="row">
@@ -21,39 +22,51 @@
                                 <h2 class="titulo-item">{{p.nombre}}</h2>
                                 <div class="d-flex justify-content-between">
                                     <p class="card-text">{{p.descripcion}}</p>
-                                    <P class="precio-item mr-4 text-success">${{p.precio}}</p>  
+                                    <P class="precio-item mr-4 text-success">${{p.precio}}</p>
+                                    
                                 </div>
-                                
+                                <p class="card-text">Stock:{{p.stock}}</p>
                             </div>
                             <button class="boton-item btn d-flex" id="botonColor">
                                 Agregar
                             </button>
                             
                     </div>
+                    <a href="{% url 'eliminar_stock' producto_id=p.sku %}" class="btn-eliminar">Comprar</a>
                 </div>   
             {% endfor %}
         </div>
     </section>
+</div>
+
+
+    
+<!-- Estoy probando un carrito nuevoDS-->
 <div class="container">
     <div class="carrito" id="carrito">
-        <div class="header-carrito">
-            <h2>Tu Carrito</h2>
-        </div>
+        
 
         <div class="carrito-items">
-            
-        </div>
-        <div class="carrito-total">
+            <div class="carrito-total">
             <div class="fila">
                 <strong>Tu Total</strong>
                 <span class="carrito-precio-total">
-                    $120.000
+                    
                 </span>
             </div>
-            <button class="btn-pagar">Pagar <i class="fa-solid fa-bag-shopping"></i> </button>
+            <a href="" class="btn-pagar">Comprar</a>
+            
+        </div>
+        
         </div>
     </div>
-</div>
     
+</div>
+
+{% if mensaje %}
+    <div class="mensaje">{{ mensaje }}</div>
+{% endif %}
+
     <script src="{% static 'js/carritoDcompras.js'  %}" async></script>
+    
 {% endblock %}
