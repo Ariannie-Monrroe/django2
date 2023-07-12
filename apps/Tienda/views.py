@@ -13,7 +13,7 @@ from .models import Categoria, Producto, Usuario
 
 from django.conf import settings
 # DEF Cargar TEMPLATES (INICIO)
-carrito = []
+
 @login_required
 def cargarAgregarProductos(request):
     categorias = Categoria.objects.all()
@@ -24,7 +24,7 @@ def cargarAgregarProductos(request):
 def cargarEditarProducto(request,sku):
     productoEdit = Producto.objects.get(sku = sku)
     categoria = Categoria.objects.all()
-    return render(request,"editProducto.html",{"prod":productoEdit, "cate":categoria , 'carrito': carrito})
+    return render(request,"editProducto.html",{"prod":productoEdit, "cate":categoria })
 
 def cargarInicio(request):
     
@@ -35,8 +35,8 @@ def cargarInicio(request):
 def cargarProductos(request):
     categorias = Categoria.objects.all()
     productos = Producto.objects.all()
-    carrito = request.session.get('carrito', [])
-    return render(request, "pProductos.html",{"prod":productos, "cate":categorias , 'carr': carrito })
+
+    return render(request, "pProductos.html",{"prod":productos, "cate":categorias})
 
 
 
@@ -154,20 +154,4 @@ def eliminar_stock(request, producto_id):
 
 
 
-def agregar_carrito(request, producto_id):
-    producto = Producto.objects.get(sku=producto_id)
-    producto_data = {
-        'sku': producto.sku,
-        'nombre': producto.nombre,
-        'precio': producto.precio,
-        'stock': producto.stock,
-        'fecha': producto.fecha.strftime('%Y-%m-%d'),  # Convertir la fecha a una cadena de texto
-        'descripcion': producto.descripcion,
-        'imagenUrl': producto.imagenUrl.url,  # Obtener la URL de la imagen
-        'categoriaId': producto.categoriaId_id,
-    }
-    carrito = request.session.get('carrito', [])  # Obtener el carrito de la sesión del usuario
-    carrito.append(producto_data)
-    request.session['carrito'] = carrito 
-    return render('/')
 

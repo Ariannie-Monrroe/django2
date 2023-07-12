@@ -42,31 +42,32 @@
 
     
 <!-- Estoy probando un carrito nuevoDS-->
-<div class="container">
-    <div class="carrito" id="carrito">
-        
-
-        <div class="carrito-items">
-            <div class="carrito-total">
-            <div class="fila">
-                <strong>Tu Total</strong>
-                <span class="carrito-precio-total">
-                    
-                </span>
+<!-- Carrito de Compras -->
+        <div class="carrito" id="carrito">
+            <div class="header-carrito">
+                <h2>Tu Carrito</h2>
             </div>
-            <a href="" class="btn-pagar">Comprar</a>
-            
+
+            <div class="carrito-items">
+                
+            </div>
+            <div class="carrito-total">
+                <div class="fila">
+                    <strong>Tu Total</strong>
+                    <span class="carrito-precio-total">
+                        
+                    </span>
+                </div>
+                <button class="btn-pagar">Pagar <i class="fa-solid fa-bag-shopping"></i> </button>
+            </div>
         </div>
-        
-        </div>
-    </div>
-    
-</div>
+    </section>
 
 {% if mensaje %}
     <div class="mensaje">{{ mensaje }}</div>
 {% endif %}
-
+<br>
+<br>
     <script src="{% static 'js/carritoDcompras.js'  %}" async></script>
     
 {% endblock %}
