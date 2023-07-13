@@ -1,6 +1,6 @@
 #botonColor{
     background-color: #087231;
-    /* font-size: 50px; */
+    /* font-size: 250px; */
     /* height: 50px; */
 }
 #agregarText{
@@ -136,4 +136,8 @@
 
 .btnP{
     height:0px;
+}
+
+#compB{
+    background-color: #087231;
 }

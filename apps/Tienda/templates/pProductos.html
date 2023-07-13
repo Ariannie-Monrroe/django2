@@ -2,12 +2,12 @@
 {% load static %}
 {% block body %}
 
-<link rel="stylesheet" href="{% static 'css/carrito.css' %}">
+<link rel="stylesheet" href="{% static 'css/carrito.css' %}"> 
 
 
 
 <div class="container mt-5">
-    <!-- <h1 class="text-center font-weigth-normal" style="color: black;">Productos</h1>  -->
+    <h1 class="text-center font-weigth-normal" style="color: black;">Productos</h1> 
 </div>
 
 
@@ -30,9 +30,11 @@
                             <button class="boton-item btn d-flex" id="botonColor">
                                 Agregar
                             </button>
+
+                            <a href="{% url 'eliminar_stock' producto_id=p.sku %}" id="compB"  class=" btn-eliminar mt-1">Comprar</a>
                             
                     </div>
-                    <a href="{% url 'eliminar_stock' producto_id=p.sku %}" class="success btn-eliminar mt-5">Comprar</a>
+                    <!-- <a href="{% url 'eliminar_stock' producto_id=p.sku %}" id="compB"  class="success btn-eliminar mt-5">Comprar</a> -->
                 </div>   
             {% endfor %}
         </div>
@@ -68,7 +70,7 @@
 <br>
 <br>
     <script src="{% static 'js/carritoDcompras.js'  %}" async></script>
-    <script>
+    <!-- <script>
         $(document).ready(function(){
             // $("#alertSI").hide();
             $("#alertNO").hide();
@@ -87,5 +89,5 @@
                 }
             });
         });
-        </script>
+        </script> -->
 {% endblock %}
