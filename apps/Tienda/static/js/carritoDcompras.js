@@ -1,3 +1,4 @@
+//Variable que mantiene el estado visible del carrito
 var carritoVisible = false;
 
 //Espermos que todos los elementos de la pàgina cargen para ejecutar el script
@@ -40,14 +41,9 @@ function ready(){
     //Agregamos funcionalidad al botón comprar
     document.getElementsByClassName('btn-pagar')[0].addEventListener('click',pagarClicked)
 }
-
-
-
-
 //Eliminamos todos los elementos del carrito y lo ocultamos
 function pagarClicked(){
     alert("Gracias por la compra");
-
     //Elimino todos los elmentos del carrito
     var carritoItems = document.getElementsByClassName('carrito-items')[0];
     while (carritoItems.hasChildNodes()){
@@ -55,8 +51,6 @@ function pagarClicked(){
     }
     actualizarTotalCarrito();
     ocultarCarrito();
-    
-    
 }
 //Funciòn que controla el boton clickeado de agregar al carrito
 function agregarAlCarritoClicked(event){
@@ -90,7 +84,7 @@ function agregarItemAlCarrito(titulo, precio, imagenSrc){
     var itemsCarrito = document.getElementsByClassName('carrito-items')[0];
 
     //controlamos que el item que intenta ingresar no se encuentre en el carrito
-    var nombresItemsCarrito = itemsCarrito.getElementsByClassName('item-titulo');
+    var nombresItemsCarrito = itemsCarrito.getElementsByClassName('carrito-item-titulo');
     for(var i=0;i < nombresItemsCarrito.length;i++){
         if(nombresItemsCarrito[i].innerText==titulo){
             alert("El item ya se encuentra en el carrito");
@@ -102,7 +96,7 @@ function agregarItemAlCarrito(titulo, precio, imagenSrc){
         <div class="carrito-item">
             <img src="${imagenSrc}" width="80px" alt="">
             <div class="carrito-item-detalles">
-                <span class="item-titulo">${titulo}</span>
+                <span class="carrito-item-titulo">${titulo}</span>
                 <div class="selector-cantidad">
                     <i class="fa-solid fa-minus restar-cantidad"></i>
                     <input type="text" value="1" class="carrito-item-cantidad" disabled>
@@ -110,7 +104,7 @@ function agregarItemAlCarrito(titulo, precio, imagenSrc){
                 </div>
                 <span class="carrito-item-precio">${precio}</span>
             </div>
-            <button class="btn-pagar">
+            <button class="btn-eliminar">
                 <i class="fa-solid fa-trash"></i>
             </button>
         </div>
@@ -190,7 +184,7 @@ function actualizarTotalCarrito(){
         var item = carritoItems[i];
         var precioElemento = item.getElementsByClassName('carrito-item-precio')[0];
         //quitamos el simobolo peso y el punto de milesimos.
-        var precio = parseFloat(precioElemento.innerText.replace('$','').replace('.'));
+        var precio = parseFloat(precioElemento.innerText.replace('$','').replace('.',''));
         var cantidadItem = item.getElementsByClassName('carrito-item-cantidad')[0];
         console.log(precio);
         var cantidad = cantidadItem.value;
@@ -198,11 +192,6 @@ function actualizarTotalCarrito(){
     }
     total = Math.round(total * 100)/100;
 
-    document.getElementsByClassName('carrito-precio-total')[0].innerText = '$'+ total.toLocaleString("es");
+    document.getElementsByClassName('carrito-precio-total')[0].innerText = '$'+total.toLocaleString("es") ;
 
 }
-
-
-
-
-

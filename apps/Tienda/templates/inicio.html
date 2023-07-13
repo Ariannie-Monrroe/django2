@@ -50,6 +50,19 @@
             </div>
         {% endfor %}
     {% endif %}
-    
+
+    <div class="container mt-5">
+        <button id="mostrarAlerta" class="btn btn-primary mb-5">Mostrar Alerta</button>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+        var btnMostrarAlerta = document.getElementById('mostrarAlerta');
+        btnMostrarAlerta.addEventListener('click', function() {
+            alert('Hola, soy una alerta');
+        });
+        });
+
+        </script>
 
 {% endblock %}
